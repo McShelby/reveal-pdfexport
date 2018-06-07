@@ -58,7 +58,10 @@ var PdfExport = ( function( Reveal ){
 	function installKeyBindings(){
 		var config = Reveal.getConfig();
 		var shortcut = config.pdfExportShortcut || 'E';
-		var keyboard = {};
+		if( !config.keyboard ){
+			return;
+		}
+		var keyboard = config.keyboard === true ? {} : config.keyboard;
 		keyboard[ shortcut.toUpperCase().charCodeAt( 0 ) ] = togglePdfExport;
 
 		Reveal.registerKeyboardShortcut( shortcut, 'PDF export mode' );
