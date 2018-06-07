@@ -1,6 +1,6 @@
 # PdfExport
 
-A [reveal.js](https://github.com/hakimel/reveal.js/) plugin to easly switch between screen and the built-in PDF export mode.
+A [reveal.js](https://github.com/hakimel/reveal.js/) plugin to easly switch between screen and the built-in PDF export mode by pressing a shortcut key.
 
 ## Installation
 
