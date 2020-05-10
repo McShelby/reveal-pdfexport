@@ -3,7 +3,7 @@ var PdfExport = ( function( Reveal ){
 	var defMode = false;
 
 	function getRevealJsPath(){
-		var regex = /\/js\/reveal.js$/i;
+		var regex = /\bjs\/reveal.js$/i;
 		var script = Array.from( document.querySelectorAll( 'script' ) ).find( function( e ){
 			return e.attributes.src && e.attributes.src.value.search( regex ) >= 0;
 		});
@@ -26,7 +26,7 @@ var PdfExport = ( function( Reveal ){
 		if( pdf ){
 			style = 'pdf';
 		}
-		link.href = getRevealJsPath() + '/css/print/' + style + '.css';
+		link.href = getRevealJsPath() + 'css/print/' + style + '.css';
 	}
 
 	function setPdfExport( pdfExport ){
