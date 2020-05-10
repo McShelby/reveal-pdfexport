@@ -52,16 +52,11 @@ var PdfExport = ( function( Reveal ){
 	function installKeyBindings(){
 		var config = Reveal.getConfig();
 		var shortcut = config.pdfExportShortcut || 'E';
-		if( !config.keyboard ){
-			return;
-		}
-		var keyboard = config.keyboard === true ? {} : config.keyboard;
-		keyboard[ shortcut.toUpperCase().charCodeAt( 0 ) ] = togglePdfExport;
-
-		Reveal.registerKeyboardShortcut( shortcut, 'PDF export mode' );
-		Reveal.configure({
-			keyboard: keyboard
-		});
+		Reveal.addKeyBinding({
+			keyCode: shortcut.toUpperCase().charCodeAt( 0 ),
+			key: shortcut,
+			description: 'PDF export mode'
+		}, togglePdfExport );
 	}
 
 	function install(){
