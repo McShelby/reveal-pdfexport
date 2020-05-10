@@ -14,7 +14,7 @@ var PdfExport = ( function( Reveal ){
 		return script.attributes.src.value.replace( regex, '' );
 	}
 
-	function setStylesheet( pdf ){
+	function setStylesheet( pdfExport ){
 		var link = document.querySelector( '#print' );
 		if( !link ){
 			link = document.createElement( 'link' );
@@ -23,15 +23,13 @@ var PdfExport = ( function( Reveal ){
 			document.querySelector( 'head' ).appendChild( link );
 		}
 		var style = 'paper';
-		if( pdf ){
+		if( pdfExport ){
 			style = 'pdf';
 		}
 		link.href = getRevealJsPath() + 'css/print/' + style + '.css';
 	}
 
 	function setPdfExport( pdfExport ){
-		var config = Reveal.getConfig();
-		pdfExport = pdfExport !== null ? pdfExport : config.pdfExport !== undefined ? !!config.pdfExport : defMode;
 		setStylesheet( pdfExport );
 	}
 
@@ -51,10 +49,6 @@ var PdfExport = ( function( Reveal ){
 		window.location.href = url_doc.toString();
 	}
 
-	function applyPdfExportParameter(){
-		setPdfExport( isPrintingPDF() );
-	}
-
 	function installKeyBindings(){
 		var config = Reveal.getConfig();
 		var shortcut = config.pdfExportShortcut || 'E';
@@ -72,7 +66,7 @@ var PdfExport = ( function( Reveal ){
 
 	function install(){
 		installKeyBindings();
-		applyPdfExportParameter();
+		setPdfExport( isPrintingPDF() );
 	}
 
 	install();
