@@ -1,6 +1,6 @@
 # PdfExport
 
-A [reveal.js](https://github.com/hakimel/reveal.js/) plugin to easly switch between screen and the built-in PDF export mode by pressing a shortcut key.
+A [reveal.js](https://github.com/hakimel/reveal.js/) plugin to easly switch to the built-in PDF export mode and back by pressing a shortcut key.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Reveal.initialize({
 });
 ```
 
-You need to remove all of the following or similar lines from your presentation. Paper or PDF stylesheets will be set by the plugin.
+You need to remove all of the following or similar lines from your presentation. Paper- or PDF-stylesheets will be set by the plugin.
 
 ```html
 <!-- Printing and PDF exports -->
@@ -35,7 +35,9 @@ You need to remove all of the following or similar lines from your presentation.
 
 To toggle between screen and PDF mode you can press the ```E``` shortcut on the keyboard.
 
-### Parameter
+### Configuration
+
+You can configure some aspects of the plugin by adding the following options to your reveal configuration. Note that all configuration values are optional and will default to the values specified below.
 
 ```javascript
 Reveal.initialize({
@@ -50,4 +52,4 @@ Reveal.initialize({
 
 [MIT licensed](https://en.wikipedia.org/wiki/MIT_License).
 
-Copyright (C) 2018 [Sören Weber](https://soeren-weber.de)
+Copyright (C) 2020 [Sören Weber](https://soeren-weber.de)
