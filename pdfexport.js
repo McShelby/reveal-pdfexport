@@ -5,15 +5,15 @@ var PdfExport = ( function( _Reveal ){
 	var installAltKeyBindings = null;
 
 	function getRevealJsPath(){
-		var regex = /\bjs\/reveal.js$/i;
-		var script = Array.from( document.querySelectorAll( 'script' ) ).find( function( e ){
-			return e.attributes.src && e.attributes.src.value.search( regex ) >= 0;
+		var regex = /\b[^/]+\/reveal.css$/i;
+		var script = Array.from( document.querySelectorAll( 'link' ) ).find( function( e ){
+			return e.attributes.href && e.attributes.href.value.search( regex ) >= 0;
 		});
 		if( !script ){
-			console.error( 'reveal.js script could not be found in included <script> elements. Did you rename this file?' );
+			console.error( 'reveal.css could not be found in included <link> elements. Did you rename this file?' );
 			return '';
 		}
-		return script.attributes.src.value.replace( regex, '' );
+		return script.attributes.href.value.replace( regex, '' );
 	}
 
 	function setStylesheet3( pdfExport ){
