@@ -1,6 +1,8 @@
-var PdfExport = ( function( Reveal ){
+var PdfExport = ( function( _Reveal ){
 
-	var defMode = false;
+	var Reveal = _Reveal;
+	var setStylesheet = null;
+	var installAltKeyBindings = null;
 
 	function getRevealJsPath(){
 		var regex = /\bjs\/reveal.js$/i;
@@ -14,7 +16,7 @@ var PdfExport = ( function( Reveal ){
 		return script.attributes.src.value.replace( regex, '' );
 	}
 
-	function setStylesheet( pdfExport ){
+	function setStylesheet3( pdfExport ){
 		var link = document.querySelector( '#print' );
 		if( !link ){
 			link = document.createElement( 'link' );
@@ -29,10 +31,27 @@ var PdfExport = ( function( Reveal ){
 		link.href = getRevealJsPath() + 'css/print/' + style + '.css';
 	}
 
-	function setPdfExport( pdfExport ){
-		setStylesheet( pdfExport );
+	function setStylesheet4( pdfExport ){
 	}
 
+	function installAltKeyBindings3(){
+	}
+
+	function installAltKeyBindings4(){
+		if( isPrintingPDF() ){
+			var config = Reveal.getConfig();
+			var shortcut = config.pdfExportShortcut || 'E';
+			window.addEventListener( 'keydown', function( e ){
+				if( e.target.nodeName.toUpperCase() == 'BODY'
+					&& ( e.key.toUpperCase() == shortcut.toUpperCase() || e.keyCode == shortcut.toUpperCase().charCodeAt( 0 ) ) ){
+					e.preventDefault();
+					togglePdfExport();
+					return false;
+				}
+			}, true );
+		}
+	}
+	
 	function isPrintingPDF(){
 		return ( /print-pdf/gi ).test( window.location.search );
 	}
@@ -57,16 +76,33 @@ var PdfExport = ( function( Reveal ){
 			key: shortcut,
 			description: 'PDF export mode'
 		}, togglePdfExport );
+		installAltKeyBindings();
 	}
 
 	function install(){
 		installKeyBindings();
-		setPdfExport( isPrintingPDF() );
+		setStylesheet( isPrintingPDF() );
 	}
 
-	install();
+	var Plugin = {
+	}
 
-	return {
-	};
+	if( Reveal && Reveal.VERSION && Reveal.VERSION.length && Reveal.VERSION[ 0 ] == '3' ){
+		// reveal 3.x
+		setStylesheet = setStylesheet3;
+		installAltKeyBindings = installAltKeyBindings3;
+		install();
+	}else{
+		// must be reveal 4.x
+		setStylesheet = setStylesheet4;
+		installAltKeyBindings = installAltKeyBindings4;
+		Plugin.id = 'pdf-export';
+		Plugin.init = function( _Reveal ){
+			Reveal = _Reveal;
+			install();
+		};
+	}
+
+	return Plugin;
 
 })( Reveal );
