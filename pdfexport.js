@@ -73,7 +73,7 @@ var PdfExport = ( function( _Reveal ){
 		var shortcut = config.pdfExportShortcut || 'E';
 		Reveal.addKeyBinding({
 			keyCode: shortcut.toUpperCase().charCodeAt( 0 ),
-			key: shortcut,
+			key: shortcut.toUpperCase(),
 			description: 'PDF export mode'
 		}, togglePdfExport );
 		installAltKeyBindings();
