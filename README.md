@@ -1,12 +1,28 @@
 # PdfExport
 
-A [reveal.js](https://github.com/hakimel/reveal.js/) plugin to easly switch to the built-in PDF export mode and back by pressing a shortcut key.
+A [reveal.js](https://github.com/hakimel/reveal.js/) 3.x / 4.x plugin to easly switch to the built-in PDF export mode and back by pressing a shortcut key.
 
 ## Installation
 
-Copy this repository into the plugins folder of your reveal.js presentation, ie ```plugin/pdfexport```.
+Copy this repository into the plugin folder of your reveal.js presentation, ie ```plugin/pdfexport```.
 
-Add the plugin to the dependencies in your presentation, as below.
+Add the plugin to the initialization of your presentation, as below.
+
+### reveal 4.x
+
+```javascript
+<script src="plugin/pdfexport/pdfexport.js"></script>
+// .. 
+Reveal.initialize({
+	// ...
+	plugins: [
+		// ..
+		PdfExport,
+	]
+});
+```
+
+### reveal 3.x
 
 ```javascript
 Reveal.initialize({
@@ -18,7 +34,7 @@ Reveal.initialize({
 });
 ```
 
-You need to remove all of the following or similar lines from your presentation. Paper- or PDF-stylesheets will be set by the plugin.
+For **reveal 3.x only** you need to remove all of the following or similar lines from your presentation. Paper- or PDF-stylesheets will be set by the plugin.
 
 ```html
 <!-- Printing and PDF exports -->
