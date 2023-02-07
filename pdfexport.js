@@ -85,6 +85,7 @@ var PdfExport = ( function( _Reveal ){
 	}
 
 	var Plugin = {
+		togglePdfExport
 	}
 
 	if( Reveal && Reveal.VERSION && Reveal.VERSION.length && Reveal.VERSION[ 0 ] == '3' ){
